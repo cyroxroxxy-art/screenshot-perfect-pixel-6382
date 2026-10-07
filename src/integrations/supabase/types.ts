@@ -14,7 +14,122 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      analysis_requests: {
+        Row: {
+          created_at: string
+          document_ids: string[]
+          error: string | null
+          id: string
+          pages_used: Json
+          question: string
+          response: Json | null
+          status: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          document_ids?: string[]
+          error?: string | null
+          id?: string
+          pages_used?: Json
+          question: string
+          response?: Json | null
+          status?: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          document_ids?: string[]
+          error?: string | null
+          id?: string
+          pages_used?: Json
+          question?: string
+          response?: Json | null
+          status?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      document_pages: {
+        Row: {
+          content_type: string
+          created_at: string
+          document_id: string
+          extracted_text: string
+          has_visuals: boolean
+          id: string
+          image_path: string | null
+          page_number: number
+          processing_status: string
+          section: string | null
+        }
+        Insert: {
+          content_type?: string
+          created_at?: string
+          document_id: string
+          extracted_text?: string
+          has_visuals?: boolean
+          id?: string
+          image_path?: string | null
+          page_number: number
+          processing_status?: string
+          section?: string | null
+        }
+        Update: {
+          content_type?: string
+          created_at?: string
+          document_id?: string
+          extracted_text?: string
+          has_visuals?: boolean
+          id?: string
+          image_path?: string | null
+          page_number?: number
+          processing_status?: string
+          section?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "document_pages_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      documents: {
+        Row: {
+          created_at: string
+          filename: string
+          id: string
+          is_demo: boolean
+          page_count: number
+          storage_path: string | null
+          upload_status: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          filename: string
+          id?: string
+          is_demo?: boolean
+          page_count?: number
+          storage_path?: string | null
+          upload_status?: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          filename?: string
+          id?: string
+          is_demo?: boolean
+          page_count?: number
+          storage_path?: string | null
+          upload_status?: string
+          workspace_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
