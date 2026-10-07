@@ -8,7 +8,7 @@ export interface UploadJob {
   key: string;
   filename: string;
   step: number; // 0 uploading..4 preparing; 5 done
-  detail?: string;
+  detail?: string | undefined;
   error?: string;
   retry?: () => void;
 }
