@@ -81,7 +81,7 @@ export async function analyze(params: {
   workspaceId: string;
   question: string;
   selected: SelectedPage[];
-  signal?: AbortSignal;
+  signal?: AbortSignal | undefined;
 }): Promise<AnalysisResponse> {
   const { workspaceId, question, selected } = params;
   if (!selected.length) throw new AppError("No pages are selected.", 400, "no_pages");

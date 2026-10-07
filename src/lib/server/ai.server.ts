@@ -13,7 +13,7 @@ interface CallOptions {
   schemaName: string;
   schema: Record<string, unknown>;
   effort?: "low" | "medium" | "high";
-  signal?: AbortSignal;
+  signal?: AbortSignal | undefined;
 }
 
 function mapStatus(status: number, body: string): AppError {
@@ -42,7 +42,7 @@ export async function callStructured<T>(opts: CallOptions): Promise<T> {
   try {
     res = await fetch(GATEWAY, {
       method: "POST",
-      signal: opts.signal,
+      signal: opts.signal ?? null,
       headers: {
         "Content-Type": "application/json",
         "Lovable-API-Key": apiKey,

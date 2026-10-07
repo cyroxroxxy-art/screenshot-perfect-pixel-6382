@@ -69,7 +69,7 @@ function Workspace() {
       fresh.forEach((d) => d.pages.forEach((p) => n.add(`${d.id}:${p.page_number}`)));
       return n;
     });
-    setView((v) => v ?? { docId: fresh[0].id, page: 1 });
+    setView((v) => v ?? { docId: fresh[0]!.id, page: 1 });
   }, [docs]);
 
   // keep polling while OCR is pending
@@ -166,7 +166,7 @@ function Workspace() {
     try {
       const sel = [...selected].map((k) => {
         const [documentId, n] = k.split(":");
-        return { documentId, pageNumber: Number(n) };
+        return { documentId: documentId ?? "", pageNumber: Number(n) };
       });
       setResult(await api.analyze(question.trim(), sel, ctrl.signal));
     } catch (e) {
