@@ -10,33 +10,129 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiAnalyzeRouteImport } from './routes/api/analyze'
+import { Route as ApiHealthRouteImport } from './routes/api/health'
+import { Route as ApiUploadRouteImport } from './routes/api/upload'
+import { Route as ApiDocumentsIndexRouteImport } from './routes/api/documents/index'
+import { Route as ApiDocumentsIdIndexRouteImport } from './routes/api/documents/$id/index'
+import { Route as ApiDocumentsIdOcrRouteImport } from './routes/api/documents/$id/ocr'
+import { Route as ApiDocumentsIdPagesPageNumberRouteImport } from './routes/api/documents/$id/pages/$pageNumber'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAnalyzeRoute = ApiAnalyzeRouteImport.update({
+  id: '/api/analyze',
+  path: '/api/analyze',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiHealthRoute = ApiHealthRouteImport.update({
+  id: '/api/health',
+  path: '/api/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiUploadRoute = ApiUploadRouteImport.update({
+  id: '/api/upload',
+  path: '/api/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDocumentsIndexRoute = ApiDocumentsIndexRouteImport.update({
+  id: '/api/documents/',
+  path: '/api/documents/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDocumentsIdIndexRoute = ApiDocumentsIdIndexRouteImport.update({
+  id: '/api/documents/$id/',
+  path: '/api/documents/$id/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDocumentsIdOcrRoute = ApiDocumentsIdOcrRouteImport.update({
+  id: '/api/documents/$id/ocr',
+  path: '/api/documents/$id/ocr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDocumentsIdPagesPageNumberRoute =
+  ApiDocumentsIdPagesPageNumberRouteImport.update({
+    id: '/api/documents/$id/pages/$pageNumber',
+    path: '/api/documents/$id/pages/$pageNumber',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/analyze': typeof ApiAnalyzeRoute
+  '/api/health': typeof ApiHealthRoute
+  '/api/upload': typeof ApiUploadRoute
+  '/api/documents/': typeof ApiDocumentsIndexRoute
+  '/api/documents/$id/ocr': typeof ApiDocumentsIdOcrRoute
+  '/api/documents/$id/': typeof ApiDocumentsIdIndexRoute
+  '/api/documents/$id/pages/$pageNumber': typeof ApiDocumentsIdPagesPageNumberRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/analyze': typeof ApiAnalyzeRoute
+  '/api/health': typeof ApiHealthRoute
+  '/api/upload': typeof ApiUploadRoute
+  '/api/documents': typeof ApiDocumentsIndexRoute
+  '/api/documents/$id/ocr': typeof ApiDocumentsIdOcrRoute
+  '/api/documents/$id': typeof ApiDocumentsIdIndexRoute
+  '/api/documents/$id/pages/$pageNumber': typeof ApiDocumentsIdPagesPageNumberRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/analyze': typeof ApiAnalyzeRoute
+  '/api/health': typeof ApiHealthRoute
+  '/api/upload': typeof ApiUploadRoute
+  '/api/documents/': typeof ApiDocumentsIndexRoute
+  '/api/documents/$id/ocr': typeof ApiDocumentsIdOcrRoute
+  '/api/documents/$id/': typeof ApiDocumentsIdIndexRoute
+  '/api/documents/$id/pages/$pageNumber': typeof ApiDocumentsIdPagesPageNumberRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/api/analyze'
+    | '/api/health'
+    | '/api/upload'
+    | '/api/documents/'
+    | '/api/documents/$id/ocr'
+    | '/api/documents/$id/'
+    | '/api/documents/$id/pages/$pageNumber'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/api/analyze'
+    | '/api/health'
+    | '/api/upload'
+    | '/api/documents'
+    | '/api/documents/$id/ocr'
+    | '/api/documents/$id'
+    | '/api/documents/$id/pages/$pageNumber'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/analyze'
+    | '/api/health'
+    | '/api/upload'
+    | '/api/documents/'
+    | '/api/documents/$id/ocr'
+    | '/api/documents/$id/'
+    | '/api/documents/$id/pages/$pageNumber'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiAnalyzeRoute: typeof ApiAnalyzeRoute
+  ApiHealthRoute: typeof ApiHealthRoute
+  ApiUploadRoute: typeof ApiUploadRoute
+  ApiDocumentsIndexRoute: typeof ApiDocumentsIndexRoute
+  ApiDocumentsIdOcrRoute: typeof ApiDocumentsIdOcrRoute
+  ApiDocumentsIdIndexRoute: typeof ApiDocumentsIdIndexRoute
+  ApiDocumentsIdPagesPageNumberRoute: typeof ApiDocumentsIdPagesPageNumberRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +144,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/analyze': {
+      id: '/api/analyze'
+      path: '/api/analyze'
+      fullPath: '/api/analyze'
+      preLoaderRoute: typeof ApiAnalyzeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/health': {
+      id: '/api/health'
+      path: '/api/health'
+      fullPath: '/api/health'
+      preLoaderRoute: typeof ApiHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/upload': {
+      id: '/api/upload'
+      path: '/api/upload'
+      fullPath: '/api/upload'
+      preLoaderRoute: typeof ApiUploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/documents/': {
+      id: '/api/documents/'
+      path: '/api/documents'
+      fullPath: '/api/documents/'
+      preLoaderRoute: typeof ApiDocumentsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/documents/$id/': {
+      id: '/api/documents/$id/'
+      path: '/api/documents/$id'
+      fullPath: '/api/documents/$id/'
+      preLoaderRoute: typeof ApiDocumentsIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/documents/$id/ocr': {
+      id: '/api/documents/$id/ocr'
+      path: '/api/documents/$id/ocr'
+      fullPath: '/api/documents/$id/ocr'
+      preLoaderRoute: typeof ApiDocumentsIdOcrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/documents/$id/pages/$pageNumber': {
+      id: '/api/documents/$id/pages/$pageNumber'
+      path: '/api/documents/$id/pages/$pageNumber'
+      fullPath: '/api/documents/$id/pages/$pageNumber'
+      preLoaderRoute: typeof ApiDocumentsIdPagesPageNumberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiAnalyzeRoute: ApiAnalyzeRoute,
+  ApiHealthRoute: ApiHealthRoute,
+  ApiUploadRoute: ApiUploadRoute,
+  ApiDocumentsIndexRoute: ApiDocumentsIndexRoute,
+  ApiDocumentsIdOcrRoute: ApiDocumentsIdOcrRoute,
+  ApiDocumentsIdIndexRoute: ApiDocumentsIdIndexRoute,
+  ApiDocumentsIdPagesPageNumberRoute: ApiDocumentsIdPagesPageNumberRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
