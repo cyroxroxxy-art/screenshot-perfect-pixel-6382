@@ -61,7 +61,7 @@ export function PageSelector({
                     )}
                   >
                     {p.page_number}
-                    <span className={cn("absolute right-1 top-1 size-1.5 rounded-full", TYPE_DOT[p.content_type] ?? TYPE_DOT.text)} />
+                    <span className={cn("absolute right-1 top-1 size-1.5 rounded-full", TYPE_DOT[p.content_type] ?? TYPE_DOT['text'])} />
                   </button>
                 );
               })}

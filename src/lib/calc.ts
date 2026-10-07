@@ -37,7 +37,8 @@ export function runCalculation(req: CalcRequest): CalculationResult {
   };
   const bad = (why: string): CalculationResult => ({ ...base, formula: why, result: null, display: "Not computable" });
   if (vals.length === 0) return bad("No numeric inputs");
-  const [a, b] = vals;
+  const a = vals[0] ?? 0;
+  const b = vals[1] ?? 0;
   let result: number;
   let formula: string;
   let pct = false;

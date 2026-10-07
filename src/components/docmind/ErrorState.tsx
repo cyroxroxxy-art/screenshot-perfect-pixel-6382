@@ -1,7 +1,7 @@
 import { AlertTriangle, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export function ErrorState({ title = "Something went wrong", message, onRetry }: { title?: string; message: string; onRetry?: () => void }) {
+export function ErrorState({ title = "Something went wrong", message, onRetry }: { title?: string; message: string; onRetry?: (() => void) | undefined }) {
   return (
     <div role="alert" className="animate-fade-up rounded-xl border border-destructive/40 bg-destructive/10 p-4">
       <div className="flex items-start gap-3">

@@ -11,7 +11,7 @@ function escapeRe(s: string) {
 }
 
 /** Highlight evidence in extracted text: exact match, else longest matching word run. */
-function Highlighted({ text, evidence }: { text: string; evidence?: string }) {
+function Highlighted({ text, evidence }: { text: string; evidence?: string | undefined }) {
   const parts = useMemo(() => {
     if (!evidence) return [text];
     const words = evidence.replace(/[“”"]/g, "").split(/\s+/).filter(Boolean);
@@ -37,7 +37,7 @@ export function PdfViewer({
   docId: string | null;
   page: number;
   pageCount: number;
-  evidence?: string;
+  evidence?: string | undefined;
   onPage: (n: number) => void;
 }) {
   const [zoom, setZoom] = useState(1);

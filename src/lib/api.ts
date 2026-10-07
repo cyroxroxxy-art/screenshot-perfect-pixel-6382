@@ -34,7 +34,7 @@ export const api = {
   analyze: (question: string, selected: SelectedPage[], signal?: AbortSignal) =>
     call<AnalysisResponse>("/api/analyze", {
       method: "POST",
-      signal,
+      signal: signal ?? null,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question, selected }),
     }),
